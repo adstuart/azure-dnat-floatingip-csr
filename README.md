@@ -43,7 +43,7 @@ Using Azure Firewall we could expose a public IP to the Internet, and utilises i
 
 ![](images/2021-10-19-21-57-57.png)
 
-## _Only_ Azure Load Balancer
+## Azure Load Balancer
 
 Using a public facing Azure Load Balancer we could receive traffic on a public IP from the Internet. Azure LB never performs SNAT. However we have some problems;
 
@@ -52,7 +52,7 @@ Using a public facing Azure Load Balancer we could receive traffic on a public I
 
 ![](images/2021-10-19-22-54-50.png)
 
-## _Only_ a Network Virtualised Appliance (NVA)
+## Network Virtualised Appliance (NVA)
 
 Using a simple Azure Public IP address mapped to a Virtual Machine representing a Network Virtual Appliance (E.g. Cisco CSR) we are able perform more advanced custom NAT translation logic. However we have a problem;
 
