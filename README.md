@@ -167,7 +167,7 @@ Don't forget
 
 In the diagram below, your diligent cloud packet herding has now got the traffic to the backend on AVS (or On-Premises) with its original IP intact. This makes your niche application owner happy as they can identify the client and make stuff work. 
 
-However when your backend responds to the client, what will happen? AVS has a packet to forward with dst.ip = 1.2.3.4. It has no idea where this exists, it will forward it to its default gateway. Depending on how you've configured AVS, this either means the packet won't get back to the client at all, or it will return to the client, but with a completely different IP address
+However, when your backend responds to the client, what will happen? AVS has a packet to forward with dst.ip = 1.2.3.4. It has no idea where this exists, it will forward it to its default gateway. Depending on how you've configured AVS, this either means the packet won't get back to the client at all, or it will return to the client, but with a completely different source IP address
 
 ![](images/2021-10-19-22-18-04.png)
 
@@ -175,7 +175,7 @@ However when your backend responds to the client, what will happen? AVS has a pa
 
 ### Enter Azure Route Server
 
-As if our foamy mess of network bubbles was not complicated enough, lets throw in another product! To stop the asymmetrical return traffic breaking our solution, we need to ensure that the backend server sends traffic back to the client, via the NVA. (This will reverse the NVA NAT logic and traffic will return from the same Azure Public IP the client originated traffic to.)
+As if our foamy mess of network bubbles was not complicated enough, lets throw in another product! To stop the asymmetrical return traffic breaking our solution, we need to ensure that the backend server sends traffic back to the client, via the NVA. (This will reverse the NVA NAT logic and traffic will return from the same Azure Public IP the client originated traffic to).
 
 Luckily we now have a product that lets us advertise custom routes from Network Virtual Appliances to the Azure SDN, and even onwards to ExpressRoute/VPN connected locations; [Azure Route Server](https://docs.microsoft.com/en-us/azure/route-server/overview). 
 
@@ -190,4 +190,6 @@ Behold the :spaghetti: spaghetti monster :space_invader:;
 # Closing
 
 You will probably never need to do this, but if someone ever asks _"Do we still need network engineers in the cloud?"_ just send them this link.
+
+Or, hopefully by the time you do need this, we can expose public IPs natively from AVS!
   
