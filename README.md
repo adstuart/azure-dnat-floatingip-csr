@@ -17,7 +17,7 @@ A customer had a fairly esoteric requirement therefore I wanted to take the time
 - Importantly, when the traffic was sent to the backend, the destination public IP needed to be retained<
 
 
-> <sup>1</sup> In my example the backend is within AVS, however this solution could equally be used for a backend that is situated within an On-Premises Data Centre. AVS is, today, connected to an Azure Virtual Network via an internal ExpressRoute, therefore the logic remains the same.
+> <sup>1</sup> In my example the backend is within AVS, however this solution could equally be used for a backend that is situated within an On-Premises Data Centre. AVS is, today, connected to an Azure Virtual Network via an internal- ExpressRoute, therefore the logic remains the same.
 
 Or put more simply, in the diagram below, the client initiates traffic towards an Azure PiP, and the traffic should arrive at the backend server sourced from the clients public IP.
 
