@@ -110,7 +110,7 @@ Assuming;
 | ------------- | ------------- |   ------------- | ------------- |
 | [1] Client to Azure   | 1.2.3.4  |   20.20.20.20  |  |
 | [2] Azure LB to NVA untrust  | 1.2.3.4 |   20.20.20.20  | Azure LB is magic<sup>1</sup> #thereisnospoon|
-| [3] NVA trust to AVS backend svr  | 1.2.3.4  |   192.168.2.1 |  |
+| [3] NVA trust to AVS backend  | 1.2.3.4  |   192.168.2.1 |  |
 
 <sup>1</sup> Short story; underlay handles service chaining transparent to overlay LB packet forwarding
 
