@@ -165,7 +165,7 @@ Don't forget
 
 ## We have another problem to fix
 
-In the diagram below, your diligent cloud packet herding has now got the fabled packet to the backend on AVS (or On-Premises) with its original IP intact. This makes your niche application owner happy as they can identify the client and make stuff work. 
+In the diagram below, your diligent cloud packet herding has now got the traffic to the backend on AVS (or On-Premises) with its original IP intact. This makes your niche application owner happy as they can identify the client and make stuff work. 
 
 However when your backend responds to the client, what will happen? AVS has a packet to forward with dst.ip = 1.2.3.4. It has no idea where this exists, it will forward it to its default gateway. Depending on how you've configured AVS, this either means the packet won't get back to the client at all, or it will return to the client, but with a completely different IP address
 
