@@ -148,6 +148,8 @@ However when your backend responds to the client, what will happen? AVS has a pa
 
 ![](images/2021-10-19-22-18-04.png)
 
+> Typically we never consider this to be a problem when using reverse proxies, because they mostly perform SNAT which therefore guarantees the backend always gets traffic back to them, regardless of the high level network routing logic in place.
+
 ### Enter Azure Route Server
 
 As if our foamy mess of network bubbles was not complicated enough, lets throw in another product! To stop the asymmetrical return traffic breaking our solution, we need to ensure that the backend server sends traffic back to the client, via the NVA. (This will reverse the NVA NAT logic and traffic will return from the same Azure Public IP the client originated traffic to.)
