@@ -101,9 +101,9 @@ Assuming;
 
 - Client Public IP = 1.2.3.4
 - Azure Public IP = 20.20.20.20
-- NVA untrust NIC = 10.1.1.1
-- NVA trust NIC = 10.2.2.2
-- AVS backend server = 192.168.2.1
+- NVA untrust NIC = 10.1.1.4
+- NVA trust NIC = 10.2.1.4
+- AVS backend server = 192.168.2.10
 
 
 | hop | src.ip |   dst.ip | notes |
@@ -119,7 +119,7 @@ Assuming;
 ## Considerations
 
 - You need to define Azure Load Balancer rules, today, on a per rule per port basis. (I.e. there is no [HAports](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-ha-ports-overview) for public load balancer)
-- Single NVA for simplicity, production would utilise at least two NVA, with LB on path on return
+- Single NVA for simplicity, production would utilise at least two NVA, also with LB in return path
 
 ### Example NVA NAT config
 
@@ -137,9 +137,9 @@ interface GigabitEthernet2
 
 ip nat outside
 ip nat inside
-ip nat inside source static 192.168.2.1 20.20.20.20
+ip nat inside source static 192.168.2.10 20.20.20.20
 
-ip route 0.0.0.0 0.0.0.0 10.0.2.1
+ip route 0.0.0.0 0.0.0.0 10.0.1.1
 
 router bgp 65019
  bgp router-id 5.6.7.8
@@ -158,6 +158,7 @@ router bgp 65019
 Don't forget
 
 - Enable IP forwarding on NVA interfaces
+- EBGP multihop for ARS (my BGP peers in above config)
 - Check NSGs (you will require non-standard outbound rules as packets are sourced from NVA from an unknown network due to no SNAT)
 - Azure LB will have to health probe your NVA, I used port 80 in testing, as the CSR responds to this by default due to the presence of a HTTP server (and easily verified via `show ip http server statistics commands`)
 - Azure LB health probe will come from IP 168.63.129.16, as long as your CSR has default 0/0 route pointing back out the untrust interface, these should be responded to just fine
