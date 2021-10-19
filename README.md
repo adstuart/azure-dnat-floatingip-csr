@@ -50,7 +50,7 @@ Using a public facing Azure Load Balancer we could receive traffic on a public I
 - Azure Load Balancer only supports backends inside of an Azure Virtual Network, not within remote networks via ExpressRoute
 - This solution would work great if customer workloads was running on Azure native VNet. 
 
-![](images/2021-10-19-21-46-15.png)
+![](images/2021-10-19-22-54-50.png)
 
 ## _Only_ a Network Virtualised Appliance (NVA)
 
