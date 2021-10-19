@@ -137,7 +137,7 @@ interface GigabitEthernet2
 
 ip nat outside
 ip nat inside
-ip nat inside source static 192.168.2.1 1.2.3.4
+ip nat inside source static 192.168.2.1 20.20.20.20
 
 ip route 0.0.0.0 0.0.0.0 10.0.2.1
 
