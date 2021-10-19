@@ -12,7 +12,7 @@
     - [Azure Load Balancer](#azure-load-balancer)
     - [Network Virtualised Appliance (NVA)](#network-virtualised-appliance-nva)
 - [A solution that will work<sup>1</sup>](#a-solution-that-will-worksup1sup)
-- [Overview](#overview)
+    - [Overview](#overview)
     - [Packet walk](#packet-walk)
     - [Considerations](#considerations)
         - [Example NVA NAT config](#example-nva-nat-config)
@@ -86,7 +86,7 @@ Using a simple Azure Public IP address mapped to a Virtual Machine representing 
 
 > <sup>1</sup>  With sufficient thrust, [pigs fly just fine](https://datatracker.ietf.org/doc/html/rfc1925). However, this is not necessarily a good idea. It is hard to be sure where they are going to land, and it could be dangerous sitting under them as they fly overhead.
 
-# Overview
+## Overview
 
 Our niche requirement needs a combination of components; 
 
