@@ -1,5 +1,27 @@
 # Azure Load Balancer Floating IP to On-Premises (or AVS) backend
 
+<!-- TOC -->
+
+- [Azure Load Balancer Floating IP to On-Premises (or AVS) backend](#azure-load-balancer-floating-ip-to-on-premises-or-avs-backend)
+- [Short on time?](#short-on-time)
+- [Introduction](#introduction)
+    - [Context/Scenario](#contextscenario)
+- [Solutions that will not work](#solutions-that-will-not-work)
+    - [Application Gateway](#application-gateway)
+    - [Azure Firewall](#azure-firewall)
+    - [Azure Load Balancer](#azure-load-balancer)
+    - [Network Virtualised Appliance (NVA)](#network-virtualised-appliance-nva)
+- [A solution that will work<sup>1</sup>](#a-solution-that-will-worksup1sup)
+- [Overview](#overview)
+    - [Packet walk](#packet-walk)
+    - [Considerations](#considerations)
+        - [Example NVA NAT config](#example-nva-nat-config)
+    - [We have another problem to fix](#we-have-another-problem-to-fix)
+        - [Enter Azure Route Server](#enter-azure-route-server)
+- [Closing](#closing)
+
+<!-- /TOC -->
+
 # Short on time?
 
 There is no shortcut for this one! Its a pretty convoluted scenario so stick with it to understand the use-case, solution and end-to-end packet flow.
