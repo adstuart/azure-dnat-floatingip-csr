@@ -101,7 +101,7 @@ Assuming;
 
 - Client Public IP = 1.2.3.4
 - Azure Public IP = 20.20.20.20
-- VA untrust NIC = 10.1.1.1
+- NVA untrust NIC = 10.1.1.1
 - NVA trust NIC = 10.2.2.2
 - AVS backend server = 192.168.2.1
 
