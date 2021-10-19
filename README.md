@@ -139,7 +139,7 @@ ip nat outside
 ip nat inside
 ip nat inside source static 192.168.2.10 20.20.20.20
 
-ip route 0.0.0.0 0.0.0.0 10.0.1.1
+ip route 0.0.0.0 0.0.0.0 10.1.1.1
 
 router bgp 65019
  bgp router-id 5.6.7.8
