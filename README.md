@@ -14,10 +14,10 @@ A customer had a fairly esoteric requirement therefore I wanted to take the time
 - Receive this traffic on a Public IP running in Azure
 - The application is using a custom protocol (not http/s)
 - Route the traffic to a backend internal server hosted on Azure VMware Solution (AVS)<sup>1</sup>
-- Importantly, when the traffic was sent to the backend, the destination public IP needed to be retained<
+- Importantly, when the traffic was sent to the backend, the destination public IP needed to be retained
 
 
-> <sup>1</sup> In my example the backend is within AVS, however this solution could equally be used for a backend that is situated within an On-Premises Data Centre. AVS is, today, connected to an Azure Virtual Network via an internal- ExpressRoute, therefore the logic remains the same.
+> <sup>1</sup> In my example the backend is within AVS, however this solution could equally be used for a backend that is situated within an On-Premises Data Centre. AVS is, today, connected to an Azure Virtual Network via an [internal ExpressRoute](https://docs.microsoft.com/en-us/azure/azure-vmware/concepts-networking), therefore the logic remains the same.
 
 Or put more simply, in the diagram below, the client initiates traffic towards an Azure PiP, and the traffic should arrive at the backend server sourced from the clients public IP.
 
@@ -45,9 +45,10 @@ Using Azure Firewall we could expose a public IP to the Internet, and utilises i
 
 ## _Only_ Azure Load Balancer
 
-Using a public facing Azure Load Balancer we could receive traffic on a public IP from the Internet. Plus, with the use of [Floating IP](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-floating-ip) we can even force the LB to _not_ perform DNAT, therefore preserving the original clients IP address. However we have a problem;
+Using a public facing Azure Load Balancer we could receive traffic on a public IP from the Internet. Azure LB never performs SNAT. However we have some problems;
 
 - Azure Load Balancer only supports backends inside of an Azure Virtual Network, not within remote networks via ExpressRoute
+- This solution would work great if customer workloads was running on Azure native VNet. 
 
 ![](images/2021-10-19-21-46-15.png)
 
@@ -65,9 +66,9 @@ Using a simple Azure Public IP address mapped to a Virtual Machine representing 
 
 # Overview
 
-Our niche requirement needs the best of both worlds; 
+Our niche requirement needs a combination of components; 
 
-- We need the Floating IP behaviour (no DNAT) of an external Azure Load Balancer
+- We need the [Floating IP](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-floating-ip) behaviour (no DNAT) of an external Azure Load Balancer
 - We also need the flexible NAT configuration available within third party NVAs that allow us to prevent SNAT after the VM forward the packet towards our AVS backend
 
 ![](images/2021-10-19-22-03-19.png)
